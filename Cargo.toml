@@ -1,0 +1,9 @@
+[package]
+name = "cc-ui-kit"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cc-utils = { git = "https://github.com/markcda/cc-utils.git", default-features = false }
+dioxus = "0.4"
+dioxus-v04-optional-hooks = "0.2.4"
