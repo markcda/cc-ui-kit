@@ -7,3 +7,6 @@ edition = "2021"
 cc-utils = { git = "https://github.com/markcda/cc-utils.git", default-features = false }
 dioxus = "0.4"
 dioxus-v04-optional-hooks = "0.2.4"
+dioxus-web = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
