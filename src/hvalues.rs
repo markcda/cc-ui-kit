@@ -29,3 +29,21 @@ impl<'a, T: Clone + 'static> HValue<'a, T> {
     if let HValue::Future(_) = self { true } else { false }
   }
 }
+
+impl<'a, T: Clone> From<&'a UseState<T>> for HValue<'a, T> {
+  fn from(value: &'a UseState<T>) -> Self {
+    Self::State(value)
+  }
+}
+
+impl<'a, T: Clone> From<&'a T> for HValue<'a, T> {
+  fn from(value: &'a T) -> Self {
+    Self::Reference(value)
+  }
+}
+
+impl<'a, T: Clone> From<&'a FutureHook<'a, T, CliError>> for HValue<'a, T> {
+  fn from(value: &'a FutureHook<'a, T, CliError>) -> Self {
+    Self::Future((value, false))
+  }
+}
