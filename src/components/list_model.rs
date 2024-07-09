@@ -19,7 +19,7 @@ use crate::prelude::*;
 ///     rsx! {
 ///       ListModel(
 ///         cx,
-///         HValue::Reference(&sources),         // Список всех данных
+///         &sources,                            // Список всех данных
 ///         |val| { **selected_source == *val }, // Условие выбора: например, если `sources` - это вектор сложных объектов
 ///         |val| { rsx!(div { "{val}" }) },     // Отображение каждого элемента данных
 ///         |_| {                                // Отображение выбранного элемента, если он есть
@@ -34,9 +34,9 @@ use crate::prelude::*;
 ///   })
 /// }
 /// ```
-pub fn ListModel<'a, T: Clone>(
+pub fn ListModel<'a, T: Clone + 'static>(
   cx: Scope<'a>,
-  values: HValue<'a, Vec<T>>,
+  values: impl Into<HValue<'a, Vec<T>>>,
   statement: impl Fn(&'a T) -> bool,
   list_gen: impl Fn(&'a T) -> LazyNodes<'a, 'a>,
   view_gen: impl Fn(&'a T) -> Option<LazyNodes<'a, 'a>>,
@@ -48,7 +48,7 @@ pub fn ListModel<'a, T: Clone>(
 
     let mut found = false;
 
-    if let Some(vals) = values.read_ref() {
+    if let Some(vals) = values.into().read_ref() {
       for val in vals.iter() {
         if !found {
           top_list.push(list_gen(&val));

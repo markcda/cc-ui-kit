@@ -7,6 +7,7 @@ use dioxus_v04_optional_hooks::FutureHook;
 /// Враппер над разными видами ссылок на значения.
 ///
 /// Используется в компонентах для Dioxus, чтобы упростить чтение данных при рендеринге DOM.
+#[derive(Clone)]
 pub enum HValue<'a, T: Clone + 'static> {
   /// Стейт из Dioxus 0.4.0-0.4.3
   State(&'a UseState<T>),
@@ -17,6 +18,8 @@ pub enum HValue<'a, T: Clone + 'static> {
   /// Для деталей - см. `dioxus_v04_optional_hooks::FutureHook`.
   Future((&'a FutureHook<'a, T, CliError>, bool)),
 }
+
+impl<'a, T: Clone + 'static> Copy for HValue<'a, T> {}
 
 impl<'a, T: Clone + 'static> HValue<'a, T> {
   /// Читает ссылку.
