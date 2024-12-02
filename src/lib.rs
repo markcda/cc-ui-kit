@@ -1,6 +1,8 @@
 #![feature(let_chains)]
 #![allow(non_snake_case)]
 
+pub mod utils;
+
 pub mod hvalues;
 pub mod components;
 

@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 cc-utils = { git = "https://github.com/markcda/cc-utils.git", default-features = false }
 dioxus = "0.4"
+dioxus-free-icons = { version = "0.7", features = ["hero-icons-solid"] }
 dioxus-v04-optional-hooks = "0.2.4"
 dioxus-web = "0.4"
 serde = { version = "1", features = ["derive"] }
