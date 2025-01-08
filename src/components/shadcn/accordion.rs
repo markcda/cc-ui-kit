@@ -100,7 +100,7 @@ pub fn AccordionTrigger<'a>(cx: Scope<'a, AccordionTriggerProps<'a>>) -> Element
           Icon {
             icon: HiChevronDown,
             class: "{icon_class}"
-          }
+          },
         }
       }
     }

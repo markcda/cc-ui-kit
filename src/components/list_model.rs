@@ -51,13 +51,13 @@ pub fn ListModel<'a, T: Clone + 'static>(
     if let Some(vals) = values.into().read_ref() {
       for val in vals.iter() {
         if !found {
-          top_list.push(list_gen(&val));
-          if statement(&val) {
+          top_list.push(list_gen(val));
+          if statement(val) {
             found = true;
-            curr_element = view_gen(&val);
+            curr_element = view_gen(val);
           }
         } else {
-          bottom_list.push(list_gen(&val));
+          bottom_list.push(list_gen(val));
         }
       }
     }

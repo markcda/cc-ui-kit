@@ -1,0 +1,99 @@
+{
+  "project_name": "cc-ui-kit",
+  "langs": [
+    "Rust",
+    {
+      "Other": "CSS"
+    }
+  ],
+  "targets": [
+    {
+      "arch": "wasm32",
+      "os": {
+        "Other": "web"
+      },
+      "derivative": "any",
+      "version": "No"
+    }
+  ],
+  "deploy_toolkit": null,
+  "builds": [
+    "deploy-build-6703d755-afc3-425e-be82-f4aa3dc83dda"
+  ],
+  "last_build": "deploy-build-6703d755-afc3-425e-be82-f4aa3dc83dda",
+  "cache_files": [
+    ".git",
+    "Cargo.lock",
+    "target"
+  ],
+  "pipelines": [
+    {
+      "title": "build",
+      "desc": "Got from `CC UI Kit Default Pipeline`. ",
+      "info": "cc-ui-kit-default@0.1.0",
+      "tags": [
+        "rust",
+        "cargo",
+        "dioxus"
+      ],
+      "actions": [
+        {
+          "title": "Compile CSS",
+          "desc": "Got from `TailwindCSS with `--minify``. Compile classes and minify them.",
+          "info": "tailwindcss-minify@0.1.0",
+          "tags": [
+            "tailwind",
+            "tailwindcss"
+          ],
+          "action": {
+            "Build": {
+              "supported_langs": [
+                {
+                  "Other": "CSS"
+                }
+              ],
+              "commands": [
+                {
+                  "bash_c": "npx --yes tailwindcss -i ./input.css -o ./public/tailwind.css --minify",
+                  "ignore_fails": false,
+                  "show_success_output": false,
+                  "show_bash_c": true,
+                  "only_when_fresh": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Lint",
+          "desc": "Got from `Cargo Clippy`.",
+          "info": "cargo-clippy@0.1.0",
+          "tags": [
+            "cargo",
+            "clippy"
+          ],
+          "action": {
+            "PreBuild": {
+              "supported_langs": [
+                "Rust"
+              ],
+              "commands": [
+                {
+                  "bash_c": "cargo clippy",
+                  "ignore_fails": false,
+                  "show_success_output": true,
+                  "show_bash_c": true,
+                  "only_when_fresh": null
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "default": true
+    }
+  ],
+  "artifacts": [],
+  "variables": [],
+  "inplace_artifacts_into_project_root": []
+}
