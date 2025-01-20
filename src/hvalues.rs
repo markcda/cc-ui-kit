@@ -14,7 +14,7 @@ pub enum HValue<'a, T: Clone + 'static> {
   /// Ссылка на значение
   Reference(&'a T),
   /// Ожидаемое замыкание из `dioxus_v04_optional_hooks` и правило его чтения (по умолчанию - `false`).
-  /// 
+  ///
   /// Для деталей - см. `dioxus_v04_optional_hooks::FutureHook`.
   Future((&'a FutureHook<'a, T, CliError>, bool)),
 }

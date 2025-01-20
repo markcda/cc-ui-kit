@@ -17,10 +17,6 @@
     }
   ],
   "deploy_toolkit": null,
-  "builds": [
-    "deploy-build-6703d755-afc3-425e-be82-f4aa3dc83dda"
-  ],
-  "last_build": "deploy-build-6703d755-afc3-425e-be82-f4aa3dc83dda",
   "cache_files": [
     ".git",
     "Cargo.lock",
@@ -29,8 +25,72 @@
   "pipelines": [
     {
       "title": "build",
-      "desc": "Got from `CC UI Kit Default Pipeline`. ",
+      "desc": "Got from `CC UI Kit Default Pipeline`.",
       "info": "cc-ui-kit-default@0.1.0",
+      "tags": [
+        "rust",
+        "cargo",
+        "dioxus"
+      ],
+      "actions": [
+        {
+          "title": "Cargo Fmt",
+          "desc": "Format `.rs` files",
+          "info": "cargo-fmt@0.1.0",
+          "tags": [
+            "rust",
+            "cargo",
+            "fmt"
+          ],
+          "action": {
+            "PreBuild": {
+              "supported_langs": [
+                "Rust"
+              ],
+              "commands": [
+                {
+                  "bash_c": "cargo fmt",
+                  "ignore_fails": false,
+                  "show_success_output": false,
+                  "show_bash_c": true,
+                  "only_when_fresh": false
+                }
+              ]
+            }
+          },
+          "exec_in_project_dir": true
+        },
+        {
+          "title": "Lint",
+          "desc": "Got from `Cargo Clippy`.",
+          "info": "cargo-clippy@0.1.0",
+          "tags": [
+            "cargo",
+            "clippy"
+          ],
+          "action": {
+            "PreBuild": {
+              "supported_langs": [
+                "Rust"
+              ],
+              "commands": [
+                {
+                  "bash_c": "cargo clippy",
+                  "ignore_fails": false,
+                  "show_success_output": true,
+                  "show_bash_c": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "default": true
+    },
+    {
+      "title": "generate-styles",
+      "desc": "",
+      "info": "cc-ui-kit-generate-styles@0.1.0",
       "tags": [
         "rust",
         "cargo",
@@ -63,37 +123,12 @@
               ]
             }
           }
-        },
-        {
-          "title": "Lint",
-          "desc": "Got from `Cargo Clippy`.",
-          "info": "cargo-clippy@0.1.0",
-          "tags": [
-            "cargo",
-            "clippy"
-          ],
-          "action": {
-            "PreBuild": {
-              "supported_langs": [
-                "Rust"
-              ],
-              "commands": [
-                {
-                  "bash_c": "cargo clippy",
-                  "ignore_fails": false,
-                  "show_success_output": true,
-                  "show_bash_c": true,
-                  "only_when_fresh": null
-                }
-              ]
-            }
-          }
         }
       ],
-      "default": true
+      "default": false
     }
   ],
   "artifacts": [],
   "variables": [],
-  "inplace_artifacts_into_project_root": []
+  "place_artifacts_into_project_root": []
 }

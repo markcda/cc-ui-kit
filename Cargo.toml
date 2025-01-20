@@ -5,10 +5,13 @@ edition = "2021"
 
 [dependencies]
 cc-utils = { git = "https://github.com/markcda/cc-utils.git", default-features = false }
+console_error_panic_hook = "0.1.7"
+console_log = "1"
 dioxus = "0.4"
 dioxus-free-icons = { version = "0.7", features = ["hero-icons-solid"] }
 dioxus-v04-optional-hooks = "0.2.4"
 dioxus-web = "0.4"
+log = "0.4"
 serde = { version = "1", features = ["derive"] }
 serde_yaml = "0.9"
 web-sys = { version = "0.3", features = ["Storage", "Window", "Navigator"] }

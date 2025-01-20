@@ -1,15 +1,15 @@
 //! Accordion element from `shadcn-ui`.
-//! 
+//!
 //! Usage example:
-//! 
+//!
 //! ```rust
 //! use cc_ui_kit::prelude::*;
 //! use cc_ui_kit::components::accordion::*;
-//! 
-//! fn App() -> Element {
-//!   let is_open = use_signal(|| false);
 //!
-//!   rsx! {
+//! fn App(cx: Scope) -> Element {
+//!   let is_open = use_state(cx, || false);
+//!
+//!   cx.render(rsx! {
 //!     Accordion {
 //!       AccordionItem {
 //!         AccordionTrigger {
@@ -22,31 +22,31 @@
 //!         }
 //!       }
 //!     }
-//!   }
+//!   })
 //! }
 //! ```
 
-use dioxus_free_icons::{Icon, icons::hi_solid_icons::HiChevronDown};
+use dioxus_free_icons::{icons::hi_solid_icons::HiChevronDown, Icon};
 
 use crate::prelude::*;
 use crate::utils::cn;
 
 #[derive(Clone, Debug, Props)]
 pub struct AccordionItemProps<'a> {
-  class: Option<String>,
+  class: Option<&'a str>,
   children: Element<'a>,
 }
 
 #[derive(Clone, Debug, Props)]
 pub struct AccordionTriggerProps<'a> {
-  class: Option<String>,
+  class: Option<&'a str>,
   is_open: &'a UseState<bool>,
   children: Element<'a>,
 }
 
 #[derive(Clone, Debug, Props)]
 pub struct AccordionContentProps<'a> {
-  class: Option<String>,
+  class: Option<&'a str>,
   is_open: &'a UseState<bool>,
   children: Element<'a>,
 }
@@ -68,8 +68,8 @@ pub fn Accordion<'a>(cx: Scope<'a, AccordionProps<'a>>) -> Element<'a> {
 #[component]
 pub fn AccordionItem<'a>(cx: Scope<'a, AccordionItemProps<'a>>) -> Element<'a> {
   cx.render({
-    let acc_item = cn(&["border-b", cx.props.class.as_ref().unwrap_or(&String::new())]);
-    
+    let acc_item = cn("border-b", cx.props.class);
+
     rsx! {
       div {
         class: "{acc_item}",
@@ -81,15 +81,19 @@ pub fn AccordionItem<'a>(cx: Scope<'a, AccordionItemProps<'a>>) -> Element<'a> {
 
 pub fn AccordionTrigger<'a>(cx: Scope<'a, AccordionTriggerProps<'a>>) -> Element<'a> {
   cx.render({
-    let div_class = cn(&[
+    let div_class = cn(
       "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline",
-      cx.props.class.as_ref().unwrap_or(&String::new()),
-    ]);
-    let icon_class = cn(&[
+      cx.props.class,
+    );
+    let icon_class = cn(
       "h-4 w-4 shrink-0 transition-transform duration-200",
-      if **cx.props.is_open { "rotate-180" } else { "" },
-    ]);
-      
+      if **cx.props.is_open {
+        Some("rotate-180")
+      } else {
+        None
+      },
+    );
+
     rsx! {
       div {
         class: "flex",
@@ -109,7 +113,7 @@ pub fn AccordionTrigger<'a>(cx: Scope<'a, AccordionTriggerProps<'a>>) -> Element
 
 pub fn AccordionContent<'a>(cx: Scope<'a, AccordionContentProps<'a>>) -> Element<'a> {
   cx.render({
-    let inner_div_class = cn(&["pb-4 pt-0", cx.props.class.as_ref().unwrap_or(&String::new())]);
+    let inner_div_class = cn("pb-4 pt-0", cx.props.class);
     let state = if **cx.props.is_open { "open" } else { "closed" };
 
     rsx! {

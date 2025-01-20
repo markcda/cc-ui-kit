@@ -3,8 +3,8 @@
 
 pub mod utils;
 
-pub mod hvalues;
 pub mod components;
+pub mod hvalues;
 pub mod router;
 
 pub mod prelude;
