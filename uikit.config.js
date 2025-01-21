@@ -10,14 +10,6 @@ module.exports = {
           "0%": { opacity: 0, transform: "translateX(100%)" },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
-        "accordion-down": {
-          from: { "max-height": "0px" },
-          to: { "max-height": "100px" },
-        },
-        "accordion-up": {
-          from: { "max-height": "100px" },
-          to: { "max-height": "0px" },
-        },
       },
       animation: {
         "slide-in": "slide-in .25s ease-in-out forwards 1",
