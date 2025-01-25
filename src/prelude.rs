@@ -20,14 +20,16 @@ pub fn setup_app(#[allow(unused_variables)] log_level: log::Level, children: Chi
   })
 }
 
-
-
 #[component]
 pub fn UIApp(children: Children) -> impl IntoView {
-  use crate::utils::{cn, light_theme, dark_theme};
-  
+  use crate::utils::{cn, dark_theme, light_theme};
+
   let preferred_dark = leptos_use::use_preferred_dark();
-  let tw_dark_class = RwSignal::new(if preferred_dark.get() { Some("dark") } else { None });
+  let tw_dark_class = RwSignal::new(if preferred_dark.get() {
+    Some("dark")
+  } else {
+    None
+  });
   let theme = RwSignal::new({
     if preferred_dark.get() {
       dark_theme()
@@ -44,7 +46,7 @@ pub fn UIApp(children: Children) -> impl IntoView {
   });
 
   view! {
-    <ConfigProvider theme class=cn("min-h-full", tw_dark_class.get())>
+    <ConfigProvider theme class=cn("min-h-full min-w-full overflow-x-auto", tw_dark_class.get())>
       <div class="flex flex-col">
         {children()}
       </div>

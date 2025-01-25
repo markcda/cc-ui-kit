@@ -83,30 +83,18 @@
               ]
             }
           }
-        }
-      ],
-      "default": true
-    },
-    {
-      "title": "generate-styles",
-      "desc": "",
-      "info": "cc-ui-kit-generate-styles@0.1.0",
-      "tags": [
-        "rust",
-        "cargo",
-        "dioxus"
-      ],
-      "actions": [
+        },
         {
-          "title": "Compile CSS",
-          "desc": "Got from `TailwindCSS with `--minify``. Compile classes and minify them.",
-          "info": "tailwindcss-minify@0.1.0",
+          "title": "Compile Tailwind Styles",
+          "desc": "Got from `Compile Tailwind Styles`. Compile application style classes with `tailwindcss` JS util.",
+          "info": "tailwind-css@0.1.0",
           "tags": [
-            "tailwind",
-            "tailwindcss"
+            "rust",
+            "css",
+            "tailwind"
           ],
           "action": {
-            "Build": {
+            "PreBuild": {
               "supported_langs": [
                 {
                   "Other": "CSS"
@@ -114,7 +102,7 @@
               ],
               "commands": [
                 {
-                  "bash_c": "npx --yes tailwindcss -i ./input.css -o ./public/tailwind.css --minify",
+                  "bash_c": "tailwindcss -i ./input.css -o ./public/tailwind.css --minify",
                   "ignore_fails": false,
                   "show_success_output": false,
                   "show_bash_c": true,
@@ -122,10 +110,11 @@
                 }
               ]
             }
-          }
+          },
+          "exec_in_project_dir": true
         }
       ],
-      "default": false
+      "default": true
     }
   ],
   "artifacts": [],
