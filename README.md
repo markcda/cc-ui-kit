@@ -1,3 +1,3 @@
 # CC UI Kit
 
-Frontend framework with `shadcn` components,  based on Dioxus v0.4-v0.4.3.
+Frontend framework with [`shadcn`-styled](https://ui.shadcn.com) [Thaw](https://thawui.vercel.app) components, based on Leptos v0.7.
