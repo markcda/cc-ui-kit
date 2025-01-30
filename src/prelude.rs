@@ -14,9 +14,7 @@ pub fn setup_app(#[allow(unused_variables)] log_level: log::Level, children: Chi
   #[cfg(not(debug_assertions))]
   console_log::init_with_level(log_level).unwrap();
   leptos::mount::mount_to_body(move || {
-    view! {
-      <UIApp children />
-    }
+    view! { <UIApp children /> }
   })
 }
 
@@ -26,7 +24,7 @@ pub fn UIApp(children: Children) -> impl IntoView {
 
   let preferred_dark = leptos_use::use_preferred_dark();
   let tw_dark_class = RwSignal::new(if preferred_dark.get() {
-    Some("dark")
+    Some("dark".to_string())
   } else {
     None
   });
@@ -46,10 +44,12 @@ pub fn UIApp(children: Children) -> impl IntoView {
   });
 
   view! {
-    <ConfigProvider theme class=cn("min-h-full min-w-full overflow-x-auto", tw_dark_class.get())>
-      <div class="flex flex-col">
-        {children()}
-      </div>
-    </ConfigProvider>
+    <crate::style_config::ConfigProvider
+      theme
+      style="min-height: 100%; min-width: 100%; overflow-x: auto;"
+      class=cn("", tw_dark_class.get())
+    >
+      <div style="display: flex; flex-direction: column;">{children()}</div>
+    </crate::style_config::ConfigProvider>
   }
 }

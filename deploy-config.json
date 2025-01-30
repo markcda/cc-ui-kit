@@ -34,6 +34,38 @@
       ],
       "actions": [
         {
+          "title": "Leptos Fmt",
+          "desc": "Format Leptos `.rs` files",
+          "info": "leptos-fmt@0.1.0",
+          "tags": [
+            "rust",
+            "cargo",
+            "fmt"
+          ],
+          "action": {
+            "PreBuild": {
+              "supported_langs": [
+                "Rust"
+              ],
+              "commands": [
+                {
+                  "bash_c": "leptosfmt -t 2 ./**/*.rs",
+                  "ignore_fails": false,
+                  "show_success_output": false,
+                  "show_bash_c": true,
+                  "only_when_fresh": false
+                }
+              ]
+            }
+          },
+          "requirements": [
+            {
+              "Exists": "~/.cargo/bin/leptosfmt"
+            }
+          ],
+          "exec_in_project_dir": true
+        },
+        {
           "title": "Cargo Fmt",
           "desc": "Format `.rs` files",
           "info": "cargo-fmt@0.1.0",
@@ -83,35 +115,6 @@
               ]
             }
           }
-        },
-        {
-          "title": "Compile Tailwind Styles",
-          "desc": "Got from `Compile Tailwind Styles`. Compile application style classes with `tailwindcss` JS util.",
-          "info": "tailwind-css@0.1.0",
-          "tags": [
-            "rust",
-            "css",
-            "tailwind"
-          ],
-          "action": {
-            "PreBuild": {
-              "supported_langs": [
-                {
-                  "Other": "CSS"
-                }
-              ],
-              "commands": [
-                {
-                  "bash_c": "tailwindcss -i ./input.css -o ./public/tailwind.css --minify",
-                  "ignore_fails": false,
-                  "show_success_output": false,
-                  "show_bash_c": true,
-                  "only_when_fresh": false
-                }
-              ]
-            }
-          },
-          "exec_in_project_dir": true
         }
       ],
       "default": true
