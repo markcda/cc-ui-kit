@@ -1,10 +1,10 @@
 [package]
 name = "cc-ui-kit"
-version = "0.1.0-alpha-4"
+version = "0.1.0-alpha-5"
 edition = "2024"
 
 [dependencies]
-cc-utils = { git = "https://github.com/markcda/cc-utils.git", default-features = false }
+cc-utils = { git = "https://github.com/markcda/cc-utils.git", tag = "0.5.4", default-features = false }
 console_error_panic_hook = "0.1.7"
 console_log = "1"
 leptos = { version = "0.7", features = ["csr"] }
