@@ -24,7 +24,7 @@ pub fn UIApp(children: Children) -> impl IntoView {
 
   let preferred_dark = leptos_use::use_preferred_dark();
   let tw_dark_class = RwSignal::new(if preferred_dark.get() {
-    Some("dark".to_string())
+    Some("dark")
   } else {
     None
   });
@@ -44,12 +44,8 @@ pub fn UIApp(children: Children) -> impl IntoView {
   });
 
   view! {
-    <crate::style_config::ConfigProvider
-      theme
-      style="min-height: 100%; min-width: 100%; overflow-x: auto;"
-      class=cn("", tw_dark_class.get())
-    >
-      <div style="display: flex; flex-direction: column;">{children()}</div>
-    </crate::style_config::ConfigProvider>
+    <ConfigProvider theme class=cn("uikit-app-container", tw_dark_class.get())>
+      <div class="uikit-app-content">{children()}</div>
+    </ConfigProvider>
   }
 }

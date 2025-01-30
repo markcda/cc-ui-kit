@@ -1,8 +1,8 @@
 // Utility function to combine classes
-pub fn cn(base: &str, additional: Option<String>) -> String {
+pub fn cn(base: &str, additional: Option<&str>) -> String {
   match additional {
-    Some(class) if !class.is_empty() => format!("{} {}", base, class),
-    _ => base.to_string(),
+    Some(class) => format!("{} {}", base, class),
+    None => base.to_string(),
   }
 }
 
