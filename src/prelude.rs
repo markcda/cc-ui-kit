@@ -22,21 +22,21 @@ pub fn setup_app(#[allow(unused_variables)] log_level: log::Level, children: Chi
 pub fn UIApp(children: Children) -> impl IntoView {
   use crate::utils::{cn, dark_theme, light_theme};
 
-  let preferred_dark = leptos_use::use_preferred_dark();
-  let tw_dark_class = RwSignal::new(if preferred_dark.get() {
+  let leptos_use::UseColorModeReturn { mode, .. } = leptos_use::use_color_mode();
+  let tw_dark_class = RwSignal::new(if let leptos_use::ColorMode::Dark = mode.get() {
     Some("dark")
   } else {
     None
   });
   let theme = RwSignal::new({
-    if preferred_dark.get() {
+    if let leptos_use::ColorMode::Dark = mode.get() {
       dark_theme()
     } else {
       light_theme()
     }
   });
   Effect::new(move |_| {
-    theme.set(if preferred_dark.get() {
+    theme.set(if let leptos_use::ColorMode::Dark = mode.get() {
       dark_theme()
     } else {
       light_theme()
